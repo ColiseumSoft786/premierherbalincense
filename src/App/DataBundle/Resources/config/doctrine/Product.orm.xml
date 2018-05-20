@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\DataBundle\Entity\Product" table="product">
+    <indexes>
+      <index name="fk_sub_product_idx" columns="Sub"/>
+    </indexes>
+    <id name="id" type="integer" column="Id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="Name" length="200" nullable="true"/>
+    <field name="image" type="string" column="Image" length="200" nullable="true"/>
+    <field name="quantity" type="integer" column="Quantity" nullable="true"/>
+    <field name="bs" type="integer" column="Bs" nullable="true"/>
+    <field name="ws" type="integer" column="Ws" nullable="true"/>
+    <field name="kartom" type="integer" column="Kartom" nullable="true"/>
+    <many-to-one field="sub" target-entity="Sub">
+      <join-columns>
+        <join-column name="Sub" referenced-column-name="Id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
