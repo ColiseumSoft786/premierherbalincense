@@ -1,3 +1,24 @@
 home_homepage:
     path:     /
     defaults: { _controller: HomeBundle:Default:index }
+home_homepage_tsp:
+    path:     /TopSellingProduct
+    defaults: { _controller: HomeBundle:Default:tsp }
+home_homepage_all:
+    path:     /AllProduct
+    defaults: { _controller: HomeBundle:Default:all }
+home_homepage_kartom:
+    path:     /Kartom
+    defaults: { _controller: HomeBundle:Default:kartom }
+home_homepage_ws:
+    path:     /Wholesale
+    defaults: { _controller: HomeBundle:Default:ws }
+home_homepage_single:
+    path:     /{id}/Product/{name}
+    defaults: { _controller: HomeBundle:Default:single }
+home_homepage_addtocart:
+    path:     /addtocart
+    defaults: { _controller: HomeBundle:Default:addtocart }
+home_homepage_cartdisplay:
+    path:     /cartdisplay
+    defaults: { _controller: HomeBundle:Default:cartdisplay }

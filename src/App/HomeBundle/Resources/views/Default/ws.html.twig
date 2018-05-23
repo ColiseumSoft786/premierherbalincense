@@ -1,0 +1,160 @@
+{% extends"::base.html.twig" %}
+{% block title %}{% endblock %}
+{% block body %}
+    <div class="clearfix"></div>
+    <!--slider image area-->
+    <div class="wrap" style="width: 94%; text-align: center; margin: 0 auto; background-color: #ffffff;">
+        <div class="main" style="width: 96%; margin:0 auto; padding-top: 1px;">
+            <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+
+            <div class="links">
+                <div class="col-md-9" style="margin: 0px; padding: 5px 0px; border-bottom: 1px solid #e0dfdf;">
+                    <h1 class="main-heading">Whole Sale</h1>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-9" style="margin: 0px; padding: 8px 0px;">
+                    <a href="">Home</a> <span>/ Whole Sale</span>
+                </div>
+                <div class="col-md-3">
+                    <span class="pull-right"><a href="" style="font-weight: 600;color: #BDBDBD">< BACK TO SHOP</a></span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+    <!--slider image area-->
+
+
+
+    <div class="wrap" style="width: 94%; padding-top: 15px; background-color:#ffffff; margin: 0 auto;">
+        <div class="main" style="width: 96%; margin: 0 auto;">
+            <div class="col-md-12" style="margin-top: 25px;">
+                <div class="col-md-9" style="padding-left: 0px;">
+
+
+                    <!--top bottom padding div-->
+                    <div style="padding: 5px 0px;"></div>
+                    <!--top bottom padding div-->
+
+                    <!--products images start-->
+
+                    {% if pro|length != 0 %}
+                        {% for item in pro|reverse %}
+                            <div class="col-md-4" style=" padding: 10px;">
+                                <div style="width: 100%; margin: 0 auto;">
+                                    <div>
+                                        <a href="{{ path('home_homepage_single',{id:item.id,name:item.name|replace({' ':'_'})}) }}"><img style="height: 250px" class="img" src="{{ asset(item.image) }}" alt=""></a>
+                                    </div>
+                                    {% if item.quantity == 0 %}
+                                        <div class="out-of-stock">
+                                            <img src="{{ asset('bundles/main/') }}img/out-of-stock.png" alt="">
+                                        </div>
+                                    {% endif %}
+                                    <div id="added{{ item.id }}" style="display: none;" class="added">
+                                        <img src="{{ asset('bundles/main/') }}img/added.png" alt="">
+                                    </div>
+                                    <div id="load{{ item.id }}" style="display: none" class="loader">
+                                        <img class="load-img" src="{{ asset('bundles/main/') }}img/load.gif" alt="">
+                                    </div>
+
+
+                                    <div class="shadow"></div>
+
+                                    <div class="h-price" style="text-align: center;">
+                                        <h6>{{ item.name }}</h6>
+                                        <div style="color: #7C7B7B; text-align: center; font-size: 20px; font-family: 'Oswald', sans-serif;">
+                                            ${{ item.price }}
+                                        </div>
+                                    </div>
+
+                                    <div class="btns">
+                                        {% if item.quantity == 0 %}
+                                            <a href="{{ path('home_homepage_single',{id:item.id,name:item.name|replace({' ':'_'})}) }}" class="readmore">READMORE</a>
+                                        {% else %}
+                                            <a onclick="addtocart({{ item.id }},1)" href="javascript:void(0)" class="cart">ADD TO CART</a>
+                                        {% endif %}
+                                        <a href="{{ path('home_homepage_single',{id:item.id,name:item.name|replace({' ':'_'})}) }}" class="detail">DETAILS</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col-md-12">
+                            <p class="para" style="background: #f7f6f7; padding: 20px 10px;-webkit-box-shadow:0 1px 2px 0 rgba(0,0,0,0.25); border-radius:2px;text-shadow: 0 1px 0 #ffffff;list-style: none outside;">No products were found matching your selection.</p>
+                        </div>
+                    {% endif %}
+
+                    <!--products images end-->
+                    <div class="clearfix"></div>
+
+                    <!--top bottom padding div-->
+                    <div style="padding: 20px 0px;"></div>
+                    <!--top bottom padding div-->
+
+                </div>
+                <!--left side bar end-->
+
+                <!--right side bar start-->
+                <div class="col-md-3" style="margin: 0px; padding-right: 0px; background: ;">
+                    <div style="color: #c58408; font-family: 'Oswald', sans-serif; font-weight: bold; font-size: 15px;">
+                        WELCOME TO COMPANYNAME.COM
+                    </div>
+                    <div style="padding: 10px 0px; font-family: 'Oswald', sans-serif;">
+                        We are the leading supplier of quality USA Made Premium Herbal Incense. Our prices will not be beaten!
+                    </div>
+                    <div>
+                        <img src="img/side.PNG" style="padding-bottom:15px;" alt="">
+                    </div>
+                    <div>
+                        <h4 style="margin-top: 15px; font-family: 'Oswald', sans-serif;">Signup For Exclusive Discounts!</h4>
+                        <form action="" method="">
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">First Name:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your First Name"></div>
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">Email Address:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your Email Address"></div>
+                            <div style="margin: 8px 0px;"><input type="submit" value="Signup"></div>
+                        </form>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <img src="{{ asset('bundles/main/') }}img/card.png" style="width:100%;" alt="">
+                    </div>
+                    <div style="font-size: 15px; margin: 5px 0px; font-family: 'Oswald', sans-serif; font-weight: bold;">
+                        We accept most major credit cards!
+                    </div>
+                    <div>
+                        <img src="{{ asset('bundles/main/') }}img/Badge1-300x300.png" style="width:100%;" alt="">
+                    </div>
+                    <div>
+                        <img src="{{ asset('bundles/main/') }}img/badge2-300x300.png" style="width:100%;" alt="">
+                    </div>
+                </div>
+                <!--right side bar end-->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <!--bordered divs start-->
+        <div class="col-md-12">
+            <div class="wrap" style="width: 100%; margin: 0 auto;">
+                <div class="main" style="width: 96%; margin: 0 auto;">
+                    <div class="col-md-12">
+                        <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--bordered divs end-->
+        <div class="clearfix"></div>
+    </div>
+
+{% endblock %}
+

@@ -1,13 +1,190 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PREMIER HERBAL INCENSE - {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('bundles/main/') }}css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('bundles/main/') }}css/style.css">
+    <link rel='dns-prefetch' href='//fonts.googleapis.com' />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+</head>
+<body style="background-color: lightgray;">
+<script src="{{ asset('bundles/main/') }}js/jquery-3.3.1.min.js"></script>
+<script src="{{ asset('bundles/main/') }}js/bootstrap.js"></script>
+<script type="text/javascript">function add_chatinline(){var hccid=85419624;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+    add_chatinline(); </script>
+<script>
+    function addtocart(id,quantity){
+        $('#load'+id).fadeIn();
+        $.ajax({
+            url: '{{ path('home_homepage_addtocart') }}?id='+id+"&qua="+quantity,
+            type: 'POST',
+            success: function(result){
+                if(result == "Added"){
+                    alert('Cart has been updated');
+                    $('#load'+id).fadeOut();
+                    $('#added'+id).fadeIn();
+                    $.ajax({
+                        url: '{{ path('home_homepage_cartdisplay') }}',
+                        type: 'POST',
+                        success: function(result){
+                            $('#cartdisplay').html(result);
+                        }
+                    });
+                }else{
+                    alert('Quantity is less than your selection');
+                }
+
+            }
+        })
+    }
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="wrap" style="background-color: #ffffff; width: 94%; margin: 0 auto;">
+                <div class="main" style="width: 96%; border-top: 3px solid #e0dfdf; border-bottom: 1px solid #e0dfdf; margin: 0 auto;">
+                    <div class="col-md-4">
+                        <div class="top-one" style="border-right: 1px solid #e0dfdf;">
+                            <img src="{{ asset('bundles/main/') }}img/logo.png" style="width: 100%;" alt="">
+                            <h3 class="logo-heading">Herbal Incense Specialists</h3>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="top-one" style="">
+                            <div class="shopping-bag">
+                                <div class="col-md-6" style=" border-right:1px solid #e0dfdf; text-align: center;">
+                                    <p style="padding: 10px 0px;">
+                                        <img src="{{ asset('bundles/main/') }}img/shopping-bag.png" style="float: left; padding:0px 12px;" alt="">
+                                        <span style="font-size: 12px;"><b>PREMIUM PRODUCTS</b></span> <br>
+                                        <span style="font-size: 12px;"><b>** 3-7 DAY DELIVERY **</b></span>
+
+                                    </p>
+                                </div>
+                                <div class="col-md-6" style="background:; border-right:1px solid #e0dfdf; text-align: center;">
+                                    <p style="padding: 10px 0px;">
+                                        <img src="{{ asset('bundles/main/') }}img/customer-support-phone-icon.png" style="float: left; padding:0px 12px;" alt="">
+                                        <span style="font-size: 12px;"><b>CUSTOMER SUPPORT</b></span> <br>
+                                        <span style="font-size: 12px;"><b>dumyaccount@gmail.com</b></span>
+
+                                    </p>
+                                </div>
+                                <div class="col-md-12" style="text-align: center; border-top: 1px solid #e0dfdf; border-right: 1px solid #e0dfdf; color: #000; background:;">
+                                    <p style="padding:15px 0px; font-size: 20px;">
+                                        Contact Us: <a style="color: #000; font-size: 20px;" href="#">dumyaccount@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="top-one" style="">
+                            <div style=" height: 55px; margin: 5px; background: #3e8f3e;" id="cartdisplay">
+                                {% render(controller('HomeBundle:Default:cartdisplay')) %}
+                            </div>
+                        </div>
+                        <div class="top-one">
+                            <div style="width: 100%; padding: 12px 5px;">
+                                <input type="search" style="width: 100%; border: 1px solid #e0dfdf; padding: 5px 0px;" placeholder=" &nbsp;Search For Products &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &#xf002">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+
+
+                    <div class="clearfix"></div>
+                </div>
+                <nav class="navbar navbar-default" style="background-color: #ffffff; margin: 0px; padding: 0px;">
+                    <div class="container-fluid" style="padding-left: 0px;">
+                        <div class="navbar-header" style="background-color: transparent;">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" style="background-color: transparent;">
+                            <ul class="nav navbar-nav" style="margin: 0px; padding: 0px;">
+                                <li><a href="{{ path('home_homepage') }}">Home</a></li>
+                                <li><a href="{{ path('home_homepage_all') }}">All Products</a></li>
+                                <li><a href="{{ path('home_homepage_tsp') }}">Top Selling Products</a></li>
+                                <li><a href="{{ path('home_homepage_kartom') }}">Kratom</a></li>
+                                <li><a href="{{ path('home_homepage') }}">Discount Code</a></li>
+                                <li><a href="{{ path('home_homepage') }}">FAQ's</a></li>
+                                <li><a href="{{ path('home_homepage_ws') }}">Wholesale Pricelist</a></li>
+                                <li><a href="{{ path('home_homepage') }}">Track You Order Here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!--<div class="col-md-12" style="margin: 0px; padding: 0px;">
+            <div class="wrap" style="width: 98%; margin: 0 auto;">
+                <div class="main" style="width: 96%; margin: 0 auto;">
+                    <div class="col-md-12" style="margin: 0px; padding: 0px;">
+                        <nav class="navbar navbar-default" style="background-color: #ffffff; margin: 0px; padding: 0px;">
+                            <div class="container-fluid">
+                                <div class="navbar-header" style="background-color: transparent;">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="collapse navbar-collapse" style="background-color: transparent;">
+                                    <ul class="nav navbar-nav" style="margin: 0px; padding: 0px;">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="all-products.html">All Products</a></li>
+                                <li><a href="top-selling-products.html">Top Selling Products</a></li>
+                                <li><a href="kratom.html">Kratom</a></li>
+                                <li><a href="discount-codes.html">Discount Code</a></li>
+                                <li><a href="faqs.html">FAQ's</a></li>
+                                <li><a href="wholesale.html">Wholesale Pricelist</a></li>
+                                <li><a href="track-order.html">Track You Order Here</a></li>
+                            </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>-->
+
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+        </div>
+
+</div>
+
+
+
+
+
+<!--footer area start-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style="">
+            <div class="wrap" style="width: 94%; background-color: #ffffff; padding: 20px 0px; margin: 0 auto;">
+                <div class="main" style="width: 96%; margin: 0 auto;">
+                    <div class="col-md-3 foot" style="padding-left: 0px; text-align: center;">Copyright <a href="http://www.premierherbalincense.com" style="color: #333333; text-decoration: none;">PREMIER HERBAL INCENSE</a> 2018</div>
+                    <div class="col-md-5" style="text-align: center;"></div>
+                    <div class="col-md-4 foot" style="padding-right: 0px; text-align: center;"><a style="color: #333333; text-decoration: none;" href="http://www.premierherbalincense.com">premierherbalincense.com</a> - The Best Herbal Incense Online!</div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer area end-->
+
+
+
+
+</body>
 </html>

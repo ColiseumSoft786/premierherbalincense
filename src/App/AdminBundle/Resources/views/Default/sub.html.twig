@@ -1,0 +1,91 @@
+<a href="javascript:void(0)" onclick="$('#addsub').toggle()">+ Create Sub Category</a>
+<div id="addsub" style="display: none">
+    <form id="addsubform">
+        <input type="hidden" value="{{ main }}" name="id">
+        <input required type="text" name="name" placeholder="Name">
+        <input type="submit" class="btn btn-primary btn-xs" style="border-radius: 0;">
+    </form>
+</div>
+<script>
+    $('#addsubform').submit(function(e){
+        e.preventDefault();
+        $('#subdata').html('<div class="text-center"><label for="">Loading...</label> </div>');
+        $.ajax({
+            url: '{{ path('admin_homepage_subcategory_add') }}',
+            type: 'GET',
+            data: $(this).serialize(),
+            success: function(result){
+                $('#subdata').html(result);
+
+            }
+        });
+    });
+</script>
+<table class="table no-margin display responsive nowrap">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if sub|length == 0 %}
+        <tr>
+            <td colspan="3" style="text-align: center">No Sub Category Found</td>
+        </tr>
+    {% else %}
+        {% set n = 1 %}
+        {% for item in sub %}
+            <tr>
+                <td>{{ n }}</td>
+                <td>{{ item.name }}</td>
+                <td>
+                    <span id="editsub{{ n }}" style="display: none;margin-top: 25px;margin-left: -140px;z-index: 9999;position: absolute;width: 300px;padding: 20px;background-color: white;border: 1px solid black">
+                        <form onsubmit="editsubcat(this,event)">
+                            <input type="hidden" value="{{ item.id }}" name="id">
+                            <input type="text" name="name" value="{{ item.name }}" class="form-control">
+                            <button type="button" class="btn btn-danger" onclick="$('#editsub{{ n }}').fadeOut()" style="margin-top: 10px">Cancel</button>
+                            <input type="submit" class="btn btn-info btn-sm pull-right" style="margin-top: 10px">
+                        </form>
+                    </span>
+                    <a href="javascript:void(0)" onclick="$('#editsub{{ n }}').fadeIn()" style="margin-right: 10px"><span class="fa fa-edit"></span></a>
+                    <a href="javascript:void(0)" onclick="deletesubcat({{ item.id }})"><span class="fa fa-cut"></span></a>
+
+                </td>
+            </tr>
+            {% set n = n + 1 %}
+        {% endfor %}
+    {% endif %}
+
+    <script>
+        function editsubcat(f,e){
+            e.preventDefault();
+            $('#subdata').html('<div class="text-center"><label for="">Loading...</label> </div>');
+            $.ajax({
+                url: '{{ path('admin_homepage_subcategory_edit') }}',
+                type: 'GET',
+                data: $(f).serialize(),
+                success: function(result){
+                    $('#subdata').html(result);
+
+                }
+            });
+        }
+        function deletesubcat(id){
+            $('#subdata').html('<div class="text-center"><label for="">Loading...</label> </div>');
+            $.ajax({
+                url: '{{ path('admin_homepage_subcategory_delete') }}?id='+id,
+                type: 'GET',
+                success: function(result){
+                    if(result == "false"){
+                        alert("Cant Delete! Product Find Against this category. Delete Those product first.");
+                    }else{
+                        $('#subdata').html(result);
+                    }
+                }
+            });
+        }
+    </script>
+    </tbody>
+</table>

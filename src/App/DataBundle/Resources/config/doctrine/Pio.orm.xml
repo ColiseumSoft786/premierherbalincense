@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\DataBundle\Entity\Pio" table="pio">
+    <indexes>
+      <index name="fk_pio_order_idx" columns="Order"/>
+      <index name="fk_pio_product_idx" columns="Product"/>
+    </indexes>
+    <id name="id" type="integer" column="Id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="quantity" type="integer" column="Quantity" nullable="true"/>
+    <many-to-one field="order" target-entity="Order">
+      <join-columns>
+        <join-column name="Order" referenced-column-name="Id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="product" target-entity="Product">
+      <join-columns>
+        <join-column name="Product" referenced-column-name="Id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

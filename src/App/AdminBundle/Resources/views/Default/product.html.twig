@@ -1,0 +1,97 @@
+{% extends"::admin.html.twig" %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/content') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/content') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('bundles/content') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+{% endblock %}
+{% block body %}
+    <section class="content-header">
+        <h1>
+            Dashboard
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Inventory</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <!-- /.row -->
+
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-offset-1 col-md-10">
+                <!-- /.row -->
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Latest Products</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="protable" class="table no-margin display responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if pro|length == 0 %}
+                                    <tr>
+                                        <td colspan="5" style="text-align: center">No Product Found</td>
+                                    </tr>
+                                    {% else %}
+                                        {% set n = 1 %}
+                                        {% for item in pro %}
+                                            <tr>
+                                                <td>{{ n }}</td>
+                                                <td><img src="{{ asset(item.image) }}" style="width: 75px;height: 75px" class="img-thumbnail" alt=""></td>
+                                                <td>{{ item.name }}</td>
+                                                <td>{{ item.sub.main.name }} > {{ item.sub.name }}</td>
+                                                <td>{{ item.quantity }}</td>
+                                                <td>
+                                                    <a href="{{ path('admin_homepage_product_edit',{id: item.id}) }}" style="margin-right: 10px"><span class="fa fa-edit"></span></a>
+                                                    <a href="{{ path('admin_homepage_product_delete',{id: item.id}) }}"><span class="fa fa-cut"></span></a>
+                                                </td>
+                                            </tr>
+                                            {% set n = n + 1 %}
+                                        {% endfor %}
+                                {% endif %}
+
+
+                                </tbody>
+                            </table>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#protable').DataTable();
+                                } );
+                            </script>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <!-- /.row -->
+    </section>
+{% endblock %}

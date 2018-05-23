@@ -13,6 +13,8 @@
     <field name="bs" type="integer" column="Bs" nullable="true"/>
     <field name="ws" type="integer" column="Ws" nullable="true"/>
     <field name="kartom" type="integer" column="Kartom" nullable="true"/>
+    <field name="details" type="text" column="Details" nullable="true"/>
+    <field name="price" type="integer" column="Price" nullable="true"/>
     <many-to-one field="sub" target-entity="Sub">
       <join-columns>
         <join-column name="Sub" referenced-column-name="Id"/>

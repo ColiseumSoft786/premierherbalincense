@@ -1,0 +1,138 @@
+{% extends"::admin.html.twig" %}
+{% block body %}
+    <section class="content-header">
+        <h1>
+            Dashboard
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Category</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <!-- /.row -->
+
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-offset-1 col-md-5">
+                <!-- /.row -->
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Main Categories</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <a href="javascript:void(0)" onclick="$('#addcat').toggle()">+ Create Category</a>
+                            <div id="addcat" style="display: none">
+                                <form action="" method="post">
+                                    <input required type="text" name="name" placeholder="Name">
+                                    <input type="submit" class="btn btn-primary btn-xs" style="border-radius: 0;">
+                                </form>
+                            </div>
+
+                            <table class="table no-margin display responsive nowrap">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if main|length == 0 %}
+                                    <tr>
+                                        <td colspan="3" style="text-align: center">No Product Found</td>
+                                    </tr>
+                                {% else %}
+                                    {% set n = 1 %}
+                                    {% for item in main %}
+                                        <tr>
+                                            <td>{{ n }}</td>
+                                            <td>{{ item.name }}</td>
+                                            <td>
+                                                <a href="javascript:void(0)" onclick="getsubcat({{ item.id }})" style="margin-right: 10px"><span class="fa fa-eye"></span></a>
+                                                <a href="javascript:void(0)" onclick="$('#editcat{{ n }}').fadeIn()" style="margin-right: 10px"><span class="fa fa-edit"></span></a>
+                                                <a href="{{ path('admin_homepage_category_delete',{id: item.id}) }}"><span class="fa fa-cut"></span></a>
+                                                <span id="editcat{{ n }}" style="z-index: 9999;display: none;position: absolute;margin-left: 10px;width: 300px;padding: 20px;background-color: white;border: 1px solid black">
+                                                    <form action="{{ path('admin_homepage_category_edit',{id:item.id}) }}">
+                                                        <input type="text" name="name" value="{{ item.name }}" class="form-control">
+                                                        <button type="button" class="btn btn-danger" onclick="$('#editcat{{ n }}').fadeOut()" style="margin-top: 10px">Cancel</button>
+                                                        <input type="submit" class="btn btn-info btn-sm pull-right" style="margin-top: 10px">
+                                                    </form>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        {% set n = n + 1 %}
+                                    {% endfor %}
+                                {% endif %}
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <div class="col-md-5">
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Sub Categories</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="table-responsive" id="subdata">
+                            <div class="text-center">
+                                <label for="">Select Any Main Category</label>
+                            </div>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                    <!-- /.box-body -->
+
+                    <!-- /.box-footer -->
+                </div>
+            </div>
+
+            <script>
+                function getsubcat(id){
+                    $('#subdata').html('<div class="text-center"><label for="">Loading...</label> </div>');
+                    $.ajax({
+                        url: '{{ path('admin_homepage_subcategory') }}?id='+id,
+                        type: 'GET',
+                        success: function(result){
+                            $('#subdata').html(result);
+                        }
+                    })
+                }
+
+
+
+            </script>
+
+
+        </div>
+        <!-- /.row -->
+    </section>
+{% endblock %}

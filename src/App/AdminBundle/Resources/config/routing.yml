@@ -1,3 +1,42 @@
 admin_homepage:
     path:     /AdminPanel
     defaults: { _controller: AdminBundle:Default:index }
+
+
+
+admin_homepage_product:
+    path:     /AdminPanel/Product
+    defaults: { _controller: AdminBundle:Default:product }
+admin_homepage_product_create:
+    path:     /AdminPanel/Product/Create
+    defaults: { _controller: AdminBundle:Default:addproduct }
+admin_homepage_product_delete:
+    path:     /AdminPanel/Product/Delete/{id}
+    defaults: { _controller: AdminBundle:Default:deleteproduct }
+admin_homepage_product_edit:
+    path:     /AdminPanel/Product/Edit/{id}
+    defaults: { _controller: AdminBundle:Default:editproduct }
+
+
+admin_homepage_category:
+    path:     /AdminPanel/Category
+    defaults: { _controller: AdminBundle:Default:category }
+admin_homepage_category_edit:
+    path:     /AdminPanel/Category/Edit/{id}
+    defaults: { _controller: AdminBundle:Default:editcat }
+admin_homepage_category_delete:
+    path:     /AdminPanel/Category/Delete/{id}
+    defaults: { _controller: AdminBundle:Default:deletecat }
+
+admin_homepage_subcategory:
+    path:     /AdminPanel/SubCategory
+    defaults: { _controller: AdminBundle:Default:sub }
+admin_homepage_subcategory_add:
+    path:     /AdminPanel/AddSubCategory
+    defaults: { _controller: AdminBundle:Default:addsub }
+admin_homepage_subcategory_edit:
+    path:     /AdminPanel/EditSubCategory
+    defaults: { _controller: AdminBundle:Default:editsub }
+admin_homepage_subcategory_delete:
+    path:     /AdminPanel/deleteSubCategory
+    defaults: { _controller: AdminBundle:Default:deletesub }

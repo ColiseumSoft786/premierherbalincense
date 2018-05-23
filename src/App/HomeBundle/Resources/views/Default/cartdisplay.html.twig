@@ -1,0 +1,46 @@
+<div class="col-md-12" style="background-color: white; height: 55px;">
+    <div class="item-0" style="width: 40%; float: left; border-right: 1px solid #e0dfdf; border-bottom: 1px solid #e0dfdf;">
+        <img src="{{ asset('bundles/main/') }}img/basket.png" style="float: left; padding: 5px 5px 5px 5px; width: 50px;" alt="">
+        <p style="text-align: center; font-size: 25px; padding-right: 10px; padding-top: 10px;">    <b>{{ cart|length }}</b>  ITEM{% if cart|length > 1 %}s{% endif %}    </p>
+    </div>
+
+    <div style="width: 30%; float: left; padding-top: 4px; text-align: center; border-bottom: 1px solid #e0dfdf;">
+        <p style="padding: 0px; text-align: center;">
+            {% set price = 0 %}
+            {% for item in cart %}
+                {% set price = price + (item[0].price * item[1]) %}
+            {% endfor %}
+        <div style=" font-weight: bold; text-align: center;">$<font size="5">{{ price }}</font></div>
+        </p>
+    </div>
+
+    <div class="cart-system" style="width: 30%; float: left;">
+        <ul style="margin: 0px; padding: 0px;">
+            <li>
+                    {% if cart|length == 0 %}
+                        <div style="text-align: center; background-color: #afacac; font-size: 18px; color: #ffffff; font-weight: bold; padding: 16.5px 0px;">
+                            Empty Cart
+                        </div>
+                        {% else %}
+                            <div style="text-align: center; background-color: #c58408; font-size: 18px; color: #ffffff; font-weight: bold; padding: 16.5px 0px;">
+                                View Cart
+                            </div>
+                    {% endif %}
+
+
+                <ul>
+                    {% if cart|length == 0 %}
+                        <li>
+                            <div style="color: #000; margin-top: 5px; font-weight: bold; border: 1px solid #e0dfdf; padding: 12px 8px; background-color: #ffffff;">No products in the cart.</div>
+                        </li>
+                        {% else %}
+                            <li>
+                                <div style="color: #000; margin-top: 5px; font-weight: bold; border: 1px solid #e0dfdf; padding: 12px 8px; background-color: #ffffff;">You have something in the cart.</div>
+                            </li>
+                    {% endif %}
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

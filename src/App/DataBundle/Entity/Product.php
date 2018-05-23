@@ -220,4 +220,60 @@ class Product
     {
         return $this->sub;
     }
+    /**
+     * @var string
+     */
+    private $details;
+
+
+    /**
+     * Set details
+     *
+     * @param string $details
+     * @return Product
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+
+        return $this;
+    }
+
+    /**
+     * Get details
+     *
+     * @return string 
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+    /**
+     * @var integer
+     */
+    private $price;
+
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     * @return Product
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
 }
