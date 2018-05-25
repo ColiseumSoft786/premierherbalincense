@@ -1,0 +1,25 @@
+<table class="table">
+    <thead style="background-color: #003c00;color: whitesmoke">
+    <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th></th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set b = 1 %}
+    {% for item in pio %}
+        <tr>
+            <td>{{ b }}</td>
+            <td>{{ item.product.name }}</td>
+            <td>x</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.product.price * item.quantity }}</td>
+        </tr>
+        {% set b = b + 1 %}
+    {% endfor %}
+    </tbody>
+
+</table>

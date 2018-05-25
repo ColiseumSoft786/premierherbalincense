@@ -1,0 +1,136 @@
+{% extends"::customer.html.twig" %}
+{% block body %}
+    <section class="content-header">
+        <h1>
+            Dashboard
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li>Admin</li>
+            <li class="active">Orders</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <!-- /.row -->
+
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-offset-1 col-md-10">
+                <!-- /.row -->
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Orders</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Order No</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <thead>
+                            {% set a = 1 %}
+                            {% for item in order %}
+                                <tr>
+                                    <td>{{ a }}</td>
+                                    <td>{{ item.orderid }}</td>
+                                    <td>{{ item.price }}</td>
+                                    <td>
+                                        {% if item.status == 1 %}
+                                            <input type="checkbox" onchange="changestatus({{ item.id }})" checked data-toggle="toggle" data-on="Delivered" data-off="Pending">
+                                        {% else %}
+                                            <input type="checkbox" onchange="changestatus({{ item.id }})" data-toggle="toggle" data-on="Delivered" data-off="Pending">
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ item.payment }}</td>
+                                    <td><a href="javascript:void(0)" onclick="$('#det{{ a }}').fadeToggle()">Details</a></td>
+                                    <td><a href="javascript:void(0)" onclick="$('#pay{{ a }}').fadeToggle()">Payment Details</a></td>
+                                </tr>
+                                <tr id="pay{{ a }}" style="display: none;">
+                                    <td colspan="7">
+                                        <div  >
+                                            <h4>Payment Details:</h4>
+                                            <div style="margin-left: 30px">
+                                                <p><label for="">Payment Method: </label> {{ item.payment }}</p>
+                                                {% if item.payment == "Debit Card" %}
+                                                    <p><label for="">Card No: </label> {{ item.card }}</p>
+                                                    <p><label for="">Expiry: </label> {{ item.exp }}</p>
+                                                    <p><label for="">Cvv: </label> {{ item.cvv }}</p>
+                                                {% endif %}
+                                            </div>
+
+                                            <h4>Customer Details</h4>
+                                            <div style="margin-left: 30px">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            <p><label for="">First Name: </label> {{ item.customer.firstname }}</p>
+                                                            <p><label for="">Last Name: </label> {{ item.customer.lastname }}</p>
+                                                            <p><label for="">Company: </label> {{ item.customer.company }}</p>
+                                                            <p><label for="">Email: </label> {{ item.customer.user.email }}</p>
+                                                        </td>
+                                                        <td>
+                                                            <p><label for="">Phone No: </label> {{ item.customer.phone }}</p>
+                                                            <p><label for="">City: </label> {{ item.customer.city }}</p>
+                                                            <p><label for="">Country: </label> {{ item.customer.country }}</p>
+                                                            <p><label for="">Zip Code: </label> {{ item.customer.zip }}</p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <p><label for="">Shipping Address: </label> {{ item.customer.saddress }}</p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="det{{ a }}" style="display: none;">
+                                    <td colspan="7">
+                                        <div>
+                                            {% render(controller('HomeBundle:Default:details',{oid:item.id})) %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% set a = a+1 %}
+                            {% endfor %}
+                            </thead>
+
+                        </table>
+                        <script>
+                            function changestatus(id){
+                                $.ajax({
+                                    url: '{{ path('admin_homepage_orders_changestatus') }}?id='+id,
+                                    type: 'GET',
+                                    success: function(result){
+                                        alert('Status Changed');
+                                    }
+                                })
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </section>
+{% endblock %}

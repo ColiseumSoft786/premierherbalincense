@@ -1,6 +1,14 @@
 admin_homepage:
     path:     /AdminPanel
     defaults: { _controller: AdminBundle:Default:index }
+admin_homepage_orders:
+    path:     /AdminPanel/Orders
+    defaults: { _controller: AdminBundle:Default:orders }
+admin_homepage_orders_changestatus:
+    path:     /AdminPanel/changestatus
+    defaults: { _controller: AdminBundle:Default:status }
+
+
 
 
 

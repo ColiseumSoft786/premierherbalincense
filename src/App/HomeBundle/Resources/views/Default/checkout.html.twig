@@ -1,0 +1,289 @@
+{% extends"::base.html.twig" %}
+{% block title %}{% endblock %}
+{% block body %}
+    <div class="clearfix"></div>
+    <!--slider image area-->
+    <div class="wrap" style="width: 94%; padding-top: 1px; text-align: center; margin: 0 auto; background-color: #ffffff;">
+        <div class="main" style="width: 96%; margin:0 auto;">
+            <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+        </div>
+    </div>
+
+
+    <div class="wrap" style="width: 94%; padding-top: 15px; background-color:#ffffff; margin: 0 auto;">
+        <div class="main" style="width: 96%; margin: 0 auto;">
+            <div class="col-md-12" style="margin-top: 25px;">
+                <div class="col-md-9" style="padding-left: 0px;">
+
+                    <div style="padding: 15px 0px; font-size: 20px; font-weight: 500;">Shipping Address</div>
+                    {% if user == null %}
+                        <div class="text-center">
+                            <p>You are not logged In, <a href="{{ path('home_homepage_login') }}">Login</a> or <a href="{{ path('home_homepage_register') }}">Register</a></p>
+                        </div>
+                        {% else %}
+                            {% if cart|length != 0 %}
+                                <form action="" method="post" id="checkoutform">
+
+                                    <div class="col-md-6">
+                                        <div style="width: 96%; padding: 10px 0px; border: 1px solid #b9b9b8; margin: 0 auto;">
+
+                                            <div class="col-md-12" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="font-size: 18px; font-family: 'Oswald', sans-serif; padding: 20px 0px;">SHIPPING ADDRESS</div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-6" style=" padding: 0px 10px; color: #696767;">
+                                                <div class="lb">First Name <font color="red">*</font></div>
+                                                <div><input readonly value="{{ customer.firstname }}" type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="col-md-6" style=" padding: 0px 10px; color: #696767;">
+                                                <div class="lb">Last Name <font color="red">*</font></div>
+                                                <div><input readonly value="{{ customer.lastname }}" type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-12" style=" padding: 10px 10px; color: #696767;">
+                                                <div class="lb">Company Name</div>
+                                                <div><input readonly value="{{ customer.company }}" type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-12" style=" padding: 0px 10px; color: #696767;">
+                                                <div class="lb">Street Address <font color="red">*</font> </div>
+                                                <div><input name="saddress" required type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div class="lb">Country <font color="red">*</font></div>
+                                                <div>
+                                                    <input name="country" required id="" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div class="lb">Town / City <font color="red">*</font></div>
+                                                <div><input name="city" required type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-6" style=" padding: 0px 10px; color: #696767;">
+                                                <div class="lb">Zip <font color="red">*</font></div>
+                                                <div><input name="zip" required type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="col-md-6" style=" padding: 0px 10px; color: #696767;">
+                                                <div class="lb">Phone <font color="red">*</font></div>
+                                                <div><input readonly value="{{ customer.phone }}" type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-12" style=" padding: 10px 10px; color: #696767;">
+                                                <div class="lb">Email Address <font color="red">*</font> </div>
+                                                <div><input readonly value="{{ user.email }}" type="text" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+
+
+
+                                    <div class="col-md-6">
+                                        <div style="width: 96%; padding: 10px 0px; border: 1px solid #b9b9b8; margin: 0 auto;">
+
+                                            <div class="col-md-12" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="font-size: 18px; font-family: 'Oswald', sans-serif; padding: 20px 0px;">YOUR ORDER</div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">Product </div>
+                                            </div>
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">Total </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            {% set price = 0 %}
+                                            {% for item in cart %}
+                                                {% set price = price + (item[0].price * item[1]) %}
+                                            {% endfor %}
+                                            {% for item in cart %}
+                                                <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                    <div style="text-align: center;">{{ item[0].name }} × {{ item[1] }} </div>
+                                                </div>
+                                                <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                    <div style="text-align: center;">${{ (item[0].price * item[1]) }} </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            {% endfor %}
+
+
+
+                                            <div class="col-md-12" style=" padding: 10px 10px; color: #696767;">
+                                                <div class="lb" style="border-top: 1px solid #d4d4d4;"></div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">Cart Subtotal </div>
+                                            </div>
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">${{ price }}</div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">Shipping </div>
+                                            </div>
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">Free Shipping</div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">Order Total </div>
+                                            </div>
+                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                <div style="text-align: center;">${{ price }}</div>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+
+                                            <div class="col-md-12" style=" padding: 10px 10px; color: #696767;">
+                                                <ul style="margin: 0px; padding: 0px; list-style: none;">
+                                                    <li class="wc_payment_method payment_method_cheque">
+                                                        <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="Money Gram"> Money Gram
+                                                        <br>
+                                                        <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="Western Union"> Western Union
+                                                    </li>
+                                                    <li class="wc_payment_method payment_method_cheque" style="padding: 10px 0px;">
+                                                        <input id="checkue" type="radio" class="input-radio" name="payment_method" value="Debit Card" data-order_button_text="">
+                                                        <label for="payment_method_cheque">
+                                                            Cheque Payment 	</label>
+                                                        <div class="payment_box payment_method_cheque" style="display: block; background: #ebebeb; padding: 10px;">
+                                                            <div class="lb">Card Number <font color="red">*</font></div>
+                                                            <div style="padding-bottom: 10px;"><input id="card" type="text" placeholder="•••• •••• •••• ••••" style="width: 100%; padding: 3px; border-radius:3px; border: 1px solid #cccccc;"></div>
+                                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                                <div class="lb">EXPIRY (MM/YY) </div>
+                                                                <div><input id="exp" type="text" placeholder="MM / YY" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                                            </div>
+                                                            <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+                                                                <div class="lb">Card Code</div>
+                                                                <div><input id="cvv" type="text" placeholder="CVV" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+                                                            <div class="col-md-12" style="text-align: right;">
+                                                                <div><input class="register-btn1" type="submit" value="PLACE ORDER"></div>
+                                                            </div>
+                                                            <div class="clearfix"></div>
+
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                </form>
+                        <script>
+                            $('#checkoutform').submit(function(e){
+                                if($('#checkue').prop('checked')){
+                                    if($('#exp').val() == ""){
+                                        alert('Fill all the fields');
+                                        e.preventDefault();
+                                    }else if($('#cvv').val() == ""){
+                                        alert('Fill all the fields');
+                                        e.preventDefault();
+                                    }else if($('#card').val() == ""){
+                                        alert('Fill all the fields');
+                                        e.preventDefault();
+                                    }
+                                }
+                            });
+                        </script>
+                                {% else %}
+                                    <div class="text-center">
+                                        <p>Your cart is emplty, go to shop now: <a href="{{ path('home_homepage_all') }}">Shop</a></p>
+                                    </div>
+                            {% endif %}
+
+                    {% endif %}
+
+
+                    <!--top bottom padding div-->
+                    <div style="padding: 20px 0px;"></div>
+                    <!--top bottom padding div-->
+
+
+
+
+                </div>
+                <!--left side bar end-->
+
+                <!--right side bar start-->
+                <div class="col-md-3" style="margin: 0px; padding-right: 0px; background: ;">
+                    <div style="color: #c58408; font-family: 'Oswald', sans-serif; font-weight: bold; font-size: 15px;">
+                        WELCOME TO COMPANYNAME.COM
+                    </div>
+                    <div style="padding: 10px 0px; font-family: 'Oswald', sans-serif;">
+                        We are the leading supplier of quality USA Made Premium Herbal Incense. Our prices will not be beaten!
+                    </div>
+                    <div>
+                        <img src="img/side.PNG" style="padding-bottom:15px;" alt="">
+                    </div>
+                    <div>
+                        <h4 style="margin-top: 15px; font-family: 'Oswald', sans-serif;">Signup For Exclusive Discounts!</h4>
+                        <form action="" method="">
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">First Name:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your First Name"></div>
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">Email Address:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your Email Address"></div>
+                            <div style="margin: 8px 0px;"><input type="submit" value="Signup"></div>
+                        </form>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <img src="img/card.png" style="width:100%;" alt="">
+                    </div>
+                    <div style="font-size: 15px; margin: 5px 0px; font-family: 'Oswald', sans-serif; font-weight: bold;">
+                        We accept most major credit cards!
+                    </div>
+                    <div>
+                        <img src="img/Badge1-300x300.png" style="width:100%;" alt="">
+                    </div>
+                    <div>
+                        <img src="img/badge2-300x300.png" style="width:100%;" alt="">
+                    </div>
+                </div>
+                <!--right side bar end-->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <!--bordered divs start-->
+        <div class="col-md-12">
+            <div class="wrap" style="width: 100%; margin: 0 auto;">
+                <div class="main" style="width: 96%; margin: 0 auto;">
+                    <div class="col-md-12">
+                        <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--bordered divs end-->
+        <div class="clearfix"></div>
+    </div>
+
+{% endblock %}
+

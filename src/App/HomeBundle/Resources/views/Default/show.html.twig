@@ -1,0 +1,15 @@
+{% if user == null %}
+    <div>
+        <a class="myaccount" href="{{ path('home_homepage_register') }}">REGISTER</a>
+        <a class="myaccount" href="{{ path('home_homepage_login') }}">LOGIN &nbsp; /</a>
+    </div>
+    {% else %}
+        <div>
+            hello, {{ user.email }}
+            {% if user.role == "Admin" %}
+                    <a class="myaccount" href="{{ path('admin_homepage') }}">My Account</a>
+                {% else %}
+                    <a class="myaccount" href="{{ path('home_homepage_customer') }}">My Account</a>
+            {% endif %}
+        </div>
+{% endif %}

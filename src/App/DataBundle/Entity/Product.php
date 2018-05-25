@@ -40,6 +40,16 @@ class Product
     private $kartom;
 
     /**
+     * @var string
+     */
+    private $details;
+
+    /**
+     * @var integer
+     */
+    private $price;
+
+    /**
      * @var integer
      */
     private $id;
@@ -189,6 +199,52 @@ class Product
     }
 
     /**
+     * Set details
+     *
+     * @param string $details
+     * @return Product
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+
+        return $this;
+    }
+
+    /**
+     * Get details
+     *
+     * @return string 
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     * @return Product
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -219,61 +275,5 @@ class Product
     public function getSub()
     {
         return $this->sub;
-    }
-    /**
-     * @var string
-     */
-    private $details;
-
-
-    /**
-     * Set details
-     *
-     * @param string $details
-     * @return Product
-     */
-    public function setDetails($details)
-    {
-        $this->details = $details;
-
-        return $this;
-    }
-
-    /**
-     * Get details
-     *
-     * @return string 
-     */
-    public function getDetails()
-    {
-        return $this->details;
-    }
-    /**
-     * @var integer
-     */
-    private $price;
-
-
-    /**
-     * Set price
-     *
-     * @param integer $price
-     * @return Product
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return integer 
-     */
-    public function getPrice()
-    {
-        return $this->price;
     }
 }

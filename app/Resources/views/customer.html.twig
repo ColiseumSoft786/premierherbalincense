@@ -51,9 +51,9 @@
         <!-- Logo -->
         <a href="" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>AP</b></span>
+            <span class="logo-mini"><b>CP</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin Panel</b></span>
+            <span class="logo-lg"><b>Customer Panel</b></span>
         </a>
 
         <nav class="navbar navbar-static-top">
@@ -80,7 +80,7 @@
                     <img src="{{ asset('bundles/content/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Admin Name</p>
+                    <p>Customer Name</p>
                     <a href=""><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -102,48 +102,8 @@
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-dashboard"></i> <span>Inventory Management</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-                </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ path('admin_homepage_product') }}"><i class="fa fa-circle-o"></i> View Products </a></li>
-                        <li><a href="{{ path('admin_homepage_product_create') }}"><i class="fa fa-circle-o"></i> add Product </a></li>
-                        <li><a href="{{ path('admin_homepage_category') }}"><i class="fa fa-circle-o"></i> View Categories </a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                </li>
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-th"></i>
-                        <span>Web Panel</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Categories </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Products </a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-duplicate"></i>
-                        <span>Web Pages</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Customize Web Pages </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Customize Main Pages </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Customize Special Offer </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Best Deals </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Slider </a></li>
-
-                    </ul>
                 </li>
                 <li class="treeview">
                     <a href="{{ path('home_homepage_logout') }}">

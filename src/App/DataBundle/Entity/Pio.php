@@ -20,9 +20,9 @@ class Pio
     private $id;
 
     /**
-     * @var \App\DataBundle\Entity\Order
+     * @var \App\DataBundle\Entity\Orders
      */
-    private $order;
+    private $orders;
 
     /**
      * @var \App\DataBundle\Entity\Product
@@ -64,26 +64,26 @@ class Pio
     }
 
     /**
-     * Set order
+     * Set orders
      *
-     * @param \App\DataBundle\Entity\Order $order
+     * @param \App\DataBundle\Entity\Orders $orders
      * @return Pio
      */
-    public function setOrder(\App\DataBundle\Entity\Order $order = null)
+    public function setOrders(\App\DataBundle\Entity\Orders $orders = null)
     {
-        $this->order = $order;
+        $this->orders = $orders;
 
         return $this;
     }
 
     /**
-     * Get order
+     * Get orders
      *
-     * @return \App\DataBundle\Entity\Order 
+     * @return \App\DataBundle\Entity\Orders 
      */
-    public function getOrder()
+    public function getOrders()
     {
-        return $this->order;
+        return $this->orders;
     }
 
     /**

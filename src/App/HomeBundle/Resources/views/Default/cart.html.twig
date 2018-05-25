@@ -1,0 +1,171 @@
+{% extends"::base.html.twig" %}
+{% block body %}
+    {% set price = 0 %}
+    {% for item in cart %}
+        {% set price = price + (item[0].price * item[1]) %}
+    {% endfor %}
+    <div class="clearfix"></div>
+    <!--slider image area-->
+    <div class="wrap" style="width: 94%; padding-top: 1px; text-align: center; margin: 0 auto; background-color: #ffffff;">
+        <div class="main" style="width: 96%; margin:0 auto;">
+            <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+        </div>
+    </div>
+    <!--slider image area-->
+
+
+
+    <div class="wrap" style="width: 94%; padding-top: 15px; background-color:#ffffff; margin: 0 auto;">
+        <div class="main" style="width: 96%; margin: 0 auto;">
+            <div class="col-md-12" style="margin-top: 25px;">
+                <div class="col-md-9" style="padding-left: 0px;">
+
+                    <div style="width: 100%;">
+                        <form action="" method="post">
+                            <table class="table table-responsive">
+                                <thead>
+                                <tr>
+                                    <th style="text-align: center;"></th>
+                                    <th style="text-align: center;"></th>
+                                    <th style="text-align: center;">Product</th>
+                                    <th style="text-align: center;">Price</th>
+                                    <th style="text-align: center;">Quantity</th>
+                                    <th style="text-align: center;">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set key = 0 %}
+                                {% for item in cart %}
+                                    <tr style="text-align: center;">
+                                        <td style="width: 10%; color: #7e8183;"><div><a href="javascript:void(0)" onclick="removecart({{ key }},'maincart')"><span class="glyphicon glyphicon-remove-sign"></span></a></div></td>
+                                        <td style="width: 10%; color: #7e8183;"><div><a href="{{ path('home_homepage_single',{id:item[0].id,name:item[0].name|replace({' ':'_'})}) }}"><img src="{{ asset(item[0].image) }}" style="width: 100%;" alt=""></a></div></td>
+                                        <td style="width: 25%; color: #7e8183;"><div>{{ item[0].name }}</div></td>
+                                        <td style="width: 15%; color: #7e8183;"><div>${{ item[0].price }}</div></td>
+                                        <td style="width: 25%; color: #7e8183;">
+                                            <div>
+                                                <input onclick="qmin({{ item[0].id }})" type="button" value="-" style="width: 25%; float: left;">
+                                                <input id="qua{{ item[0].id }}" style="width:50%; text-align: center; float: left;" type="text" name="qua{{ key }}" value="{{ item[1] }}" title="Qty">
+                                                <input onclick="qplus({{ item[0].id }})" type="button" style="width: 25%; float: left;" value="+" class="single-pro">
+                                                <input type="hidden" name="key{{ key }}" value="{{ key }}">
+                                            </div>
+
+                                        </td>
+                                        <td style="width: 15%; color: #7e8183;"><div>${{ item[0].price * item[1] }}</div></td>
+                                    </tr>
+                                    {% set key = key + 1 %}
+                                {% endfor %}
+                                <script>
+                                    function qplus(id){
+                                        $('#qua'+id).val(parseInt($('#qua'+id).val()) + 1);
+                                    }function qmin(id){
+                                        if($('#qua'+id).val() != 1){
+                                            $('#qua'+id).val($('#qua'+id).val() - 1);
+                                        }
+                                    }
+                                </script>
+                                </tbody>
+                            </table>
+
+                            <div style="text-align: right; padding: 10px 0px; border-top: 1px solid #7e8183;">
+                                <input class="updatecart" type="submit" value="UPDATE CART">
+                                <a class="checkout" href="{{ path('home_homepage_checkout') }}"><span class="glyphicon glyphicon-shopping-cart"></span> PROCEED TO CHECKOUT</a>
+                            </div>
+
+                        </form>
+
+                        <div class="col-md-12">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8" style="border: 1px solid #F39501; padding: 2px; margin: 0px;">
+                                <div class="data">
+                                    <div class="top-heading-cart">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                                        CART TOTALS
+                                    </div>
+                                    <div class="cart-data">
+                                        <div style="width: 50%; float: left;">Cart Subtotal</div>
+                                        <div style="width: 50%; text-align: right; float: left;">${{ price }}</div>
+                                    </div>
+                                    <div class="cart-data">
+                                        <div style="width: 50%; float: left;">Shipping</div>
+                                        <div style="width: 50%; text-align: right; float: left;">Free Shipping</div>
+                                    </div>
+                                    <div class="cart-data">
+                                        <div style="width: 50%; float: left;">Order Total</div>
+                                        <div style="width: 50%; text-align: right; float: left;">${{ price }}</div>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 play-security">
+                            PAYMENT SECURITY
+                        </div>
+                        <div class="col-md-12 play-security" style="margin-bottom: 20px;">
+                            With respect to security: We always use industry standard encryption technologies when transferring and receiving consumer data exchanged with our site, We have appropriate security measures in place in our physical facilities to protect against the loss, misuse or alteration of information that we have collected from you at our site.
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--left side bar end-->
+
+                <!--right side bar start-->
+                <div class="col-md-3" style="margin: 0px; padding-right: 0px; background: ;">
+                    <div style="color: #c58408; font-family: 'Oswald', sans-serif; font-weight: bold; font-size: 15px;">
+                        WELCOME TO COMPANYNAME.COM
+                    </div>
+                    <div style="padding: 10px 0px; font-family: 'Oswald', sans-serif;">
+                        We are the leading supplier of quality USA Made Premium Herbal Incense. Our prices will not be beaten!
+                    </div>
+                    <div>
+                        <img src="img/side.PNG" style="padding-bottom:15px;" alt="">
+                    </div>
+                    <div>
+                        <h4 style="margin-top: 15px; font-family: 'Oswald', sans-serif;">Signup For Exclusive Discounts!</h4>
+                        <form action="" method="">
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">First Name:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your First Name"></div>
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">Email Address:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your Email Address"></div>
+                            <div style="margin: 8px 0px;"><input type="submit" value="Signup"></div>
+                        </form>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <img src="img/card.png" style="width:100%;" alt="">
+                    </div>
+                    <div style="font-size: 15px; margin: 5px 0px; font-family: 'Oswald', sans-serif; font-weight: bold;">
+                        We accept most major credit cards!
+                    </div>
+                    <div>
+                        <img src="img/Badge1-300x300.png" style="width:100%;" alt="">
+                    </div>
+                    <div>
+                        <img src="img/badge2-300x300.png" style="width:100%;" alt="">
+                    </div>
+                </div>
+                <!--right side bar end-->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <!--bordered divs start-->
+        <div class="col-md-12">
+            <div class="wrap" style="width: 100%; margin: 0 auto;">
+                <div class="main" style="width: 96%; margin: 0 auto;">
+                    <div class="col-md-12">
+                        <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--bordered divs end-->
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}

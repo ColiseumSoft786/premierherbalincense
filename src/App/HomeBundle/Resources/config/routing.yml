@@ -14,7 +14,7 @@ home_homepage_ws:
     path:     /Wholesale
     defaults: { _controller: HomeBundle:Default:ws }
 home_homepage_single:
-    path:     /{id}/Product/{name}
+    path:     /{id}/Product_details/{name}
     defaults: { _controller: HomeBundle:Default:single }
 home_homepage_addtocart:
     path:     /addtocart
@@ -22,3 +22,34 @@ home_homepage_addtocart:
 home_homepage_cartdisplay:
     path:     /cartdisplay
     defaults: { _controller: HomeBundle:Default:cartdisplay }
+home_homepage_removecart:
+    path:     /removecartdisplay
+    defaults: { _controller: HomeBundle:Default:removecart }
+home_homepage_login:
+    path:     /login
+    defaults: { _controller: HomeBundle:Default:login }
+home_homepage_register:
+    path:     /register
+    defaults: { _controller: HomeBundle:Default:register }
+home_homepage_logout:
+    path:     /logout
+    defaults: { _controller: HomeBundle:Default:logout }
+
+home_homepage_cart:
+    path:     /cart
+    defaults: { _controller: HomeBundle:Default:cart }
+home_homepage_checkout:
+    path:     /checkout
+    defaults: { _controller: HomeBundle:Default:checkout }
+home_homepage_thanks:
+    path:     /Thanks/{oid}
+    defaults: { _controller: HomeBundle:Default:thanks }
+home_homepage_customer:
+    path:     /customer
+    defaults: { _controller: HomeBundle:Default:customer }
+home_homepage_review:
+    path:     /review
+    defaults: { _controller: HomeBundle:Default:review }
+home_homepage_tracking:
+    path:     /tracking
+    defaults: { _controller: HomeBundle:Default:tracking }

@@ -139,6 +139,24 @@
                             </div>
                             <div role="tabpanel" class="tab-pane" id="profile">
                                 <h5 style="padding: 10px 0px; font-family: 'Oswald', sans-serif; font-size: 16px;"><b>Review Detail</b></h5>
+                                {% for item in pio %}
+                                    {% if item.orders.review != null %}
+                                        <div class="media jumbotron" style="padding: 20px">
+                                            <div class="media-left">
+                                                <a href="#">
+                                                    <img class="media-object" src="{{ asset('bundles/main/user.png') }}" style="width: 60px;height: 60px">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">{{ item.orders.customer.firstname }} {{ item.orders.customer.lastname }} </h4>
+                                                {{ item.orders.review }}
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    {% endif %}
+
+                                {% endfor %}
+
                             </div>
                         </div>
 

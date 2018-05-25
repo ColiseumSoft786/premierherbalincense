@@ -21,10 +21,11 @@
                         <div style="text-align: center; background-color: #afacac; font-size: 18px; color: #ffffff; font-weight: bold; padding: 16.5px 0px;">
                             Empty Cart
                         </div>
-                        {% else %}
+                        {% else %}<a style="text-decoration: none" href="{{ path('home_homepage_cart') }}">
                             <div style="text-align: center; background-color: #c58408; font-size: 18px; color: #ffffff; font-weight: bold; padding: 16.5px 0px;">
                                 View Cart
                             </div>
+                        </a>
                     {% endif %}
 
 
@@ -35,7 +36,41 @@
                         </li>
                         {% else %}
                             <li>
-                                <div style="color: #000; margin-top: 5px; font-weight: bold; border: 1px solid #e0dfdf; padding: 12px 8px; background-color: #ffffff;">You have something in the cart.</div>
+                                <div style="color: #000; margin-top:2px; font-weight: bold; border: 1px solid #e0dfdf; padding: 30px 8px 40px 8px; background-color: #ffffff;">
+                                    <!--No products in the cart.-->
+                                    {% set key = 0 %}
+                                    {% for item in cart %}
+                                        <div style="margin-top: 5px">
+                                            <div style="width: 30%; float: left;">
+                                                <a href="{{ path('home_homepage_single',{id:item[0].id,name:item[0].name|replace({' ':'_'})}) }}"><img src="{{ asset(item[0].image) }}" style="height: 90px;width: 100%; border: 2px solid #afacac; padding: 2px;" alt=""></a>
+                                            </div>
+                                            <div style="width: 40%; float: left;">
+                                                <div style="padding: 7px 0px 3px 6px;"><a class="cartbtn" href="{{ path('home_homepage_single',{id:item[0].id,name:item[0].name|replace({' ':'_'})}) }}">{{ item[0].name }}</a></div>
+                                                <div style="padding: 3px 0px 3px 6px;"><a class="cartbtn1" style="font-size: 12px;" href="javascript:void(0)" onclick='removecart({{ key }},"cartdisplay")'> <span class="glyphicon glyphicon-remove-sign"></span> Remove</a></div>
+                                            </div>
+                                            <div style="width: 30%; text-align: center; font-size: 18px; font-family: 'Oswald', sans-serif; color: #8b8b84; padding: 10px 0px; float: left;">
+                                                <span>{{ item[1] }} ×</span> <span>${{ item[0].price }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        {% set key = key + 1 %}
+
+                                    {% endfor %}
+                                    <div class="cart-right">
+                                        <div style="width: 50%; font-size: 18px; font-weight: normal; float: left; font-family: 'Oswald', sans-serif;">
+                                            <span> &nbsp; SUBTOTAL</span>
+                                        </div>
+                                        <div style="width: 50%; text-align: center; font-weight: 400; float: left; font-size: 18px; font-family: 'Oswald', sans-serif;">
+                                            <span>${{ price }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="cart-right" style="text-align: center; padding-bottom: 15px;">
+                                        <a class="left-cart" href="{{ path('home_homepage_checkout') }}">CHECKOUT</a> &nbsp;
+                                        <a class="left-cart1" href="{{ path('home_homepage_cart') }}">VIEWCART</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
                             </li>
                     {% endif %}
 

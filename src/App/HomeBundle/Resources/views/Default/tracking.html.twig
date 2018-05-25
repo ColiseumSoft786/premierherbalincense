@@ -1,0 +1,198 @@
+{% extends"::base.html.twig" %}
+{% block title %}{% endblock %}
+{% block body %}
+    <div class="clearfix"></div>
+    <!--slider image area-->
+    <div class="wrap" style="width: 94%; padding-top: 1px; text-align: center; margin: 0 auto; background-color: #ffffff;">
+        <div class="main" style="width: 96%; margin:0 auto;">
+            <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+            <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+        </div>
+    </div>
+
+
+    <div class="wrap" style="width: 94%; padding-top: 15px; background-color:#ffffff; margin: 0 auto;">
+        <div class="main" style="width: 96%; margin: 0 auto;">
+            <div class="col-md-12" style="margin-top: 25px;">
+                <div class="col-md-9" style="padding-left: 0px;">
+                    <!--bottom paragraph start-->
+                    <div class="para" style="margin-top: 15px;">
+                        To track your order please enter your Order ID in the box below and press the "Track" button. This was given to you on your receipt and in the confirmation email you should have received.
+                    </div>
+
+
+                    <!--top bottom padding div-->
+                    <div style="padding: 15px 0px;"></div>
+                    <!--top bottom padding div-->
+
+                    <form action="" method="post">
+                        <div class="col-md-6">
+                            <div style="width: 90%;">
+                                <div style="font-size: 13px; color: #828282; font-weight: 700; margin-bottom: 6px; display: block;">Order ID</div>
+                                <div><input name="id" style="width: 100%; padding: 7px; border: 1px solid #e0dfdf;" type="text" placeholder="Order No"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="width: 90%;">
+                                <div style="font-size: 13px; color: #828282; font-weight: 700; margin-bottom: 6px; display: block;">Billing email</div>
+                                <div><input name="email" style="width: 100%; padding: 7px; border: 1px solid #e0dfdf;" type="text" placeholder="Your Email"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div><input class="track-btn" type="submit" value="TRACK"></div>
+                        </div>
+                    </form>
+
+                    <div class="clearfix"></div>
+
+                    <!--top bottom padding div-->
+                    <div style="padding: 20px 0px;"></div>
+                    <!--top bottom padding div-->
+                    <div class="col-md-12">
+                        {% if order is defined %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Order No</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Payment</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <thead>
+
+                                    <tr>
+                                        <td>{{ 1 }}</td>
+                                        <td>{{ order.orderid }}</td>
+                                        <td>{{ order.price }}</td>
+                                        <td>
+                                            {% if order.status == 1 %}
+                                                <label for="" class="label label-success">Delivered</label>
+                                            {% else %}
+                                                <label for="" class="label label-warning">Pending</label>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ order.payment }}</td>
+                                        {% if order.status == 1 %}
+                                            <td><a href="javascript:void(0)" onclick="$('#rev1').fadeToggle()">Review</a></td>
+                                        {% endif %}
+                                    </tr>
+                                    {% if order.status == 1 %}
+                                        <tr id="rev1" style="display: none;">
+                                            <td colspan="6">
+                                                {% if order.review == null %}
+                                                    <form action="{{ path('home_homepage_review') }}" method="post">
+                                                        <input type="hidden" name="id" value="{{ order.id }}">
+                                                        <div class="col-md-offset-8 col-md-3">
+                                                            <input required type="text" name="review" placeholder="Review" class="form-control">
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <input type="submit" class="btn btn-instagram">
+                                                        </div>
+                                                    </form>
+                                                {% else %}
+                                                    <div class="col-md-offset-7 col-md-5">
+                                                        <label>Review:</label> {{ order.review }}
+                                                    </div>
+                                                {% endif %}
+
+                                            </td>
+                                        </tr>
+
+                                    {% endif %}
+                                    <tr>
+                                        <td></td>
+                                        <td colspan="4">
+                                            <div >
+                                                {% render(controller('HomeBundle:Default:details',{oid:order.id})) %}
+                                            </div>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+
+                                </thead>
+
+                            </table>
+
+                        {% elseif err is defined  %}
+                            <div class="alert alert-danger">
+                                {{ err }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-12" style="padding: 0px; margin: 0px;">
+                        <div class="para">
+                            If you want to track your shipping click on the USPS image below and key in the Shipping Tracking number.
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <img src="{{ asset('bundles/main/') }}img/usps_track.jpg" alt="">
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--left side bar end-->
+
+                <!--right side bar start-->
+                <div class="col-md-3" style="margin: 0px; padding-right: 0px; background: ;">
+                    <div style="color: #c58408; font-family: 'Oswald', sans-serif; font-weight: bold; font-size: 15px;">
+                        WELCOME TO COMPANYNAME.COM
+                    </div>
+                    <div style="padding: 10px 0px; font-family: 'Oswald', sans-serif;">
+                        We are the leading supplier of quality USA Made Premium Herbal Incense. Our prices will not be beaten!
+                    </div>
+                    <div>
+                        <img src="img/side.PNG" style="padding-bottom:15px;" alt="">
+                    </div>
+                    <div>
+                        <h4 style="margin-top: 15px; font-family: 'Oswald', sans-serif;">Signup For Exclusive Discounts!</h4>
+                        <form action="" method="">
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">First Name:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your First Name"></div>
+                            <div style="margin: 5px 0px; font-family: 'Oswald', sans-serif;">Email Address:</div>
+                            <div><input type="text" style="width: 100%; padding: 5px; margin-bottom: 5px;" placeholder="Your Email Address"></div>
+                            <div style="margin: 8px 0px;"><input type="submit" value="Signup"></div>
+                        </form>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <img src="img/card.png" style="width:100%;" alt="">
+                    </div>
+                    <div style="font-size: 15px; margin: 5px 0px; font-family: 'Oswald', sans-serif; font-weight: bold;">
+                        We accept most major credit cards!
+                    </div>
+                    <div>
+                        <img src="img/Badge1-300x300.png" style="width:100%;" alt="">
+                    </div>
+                    <div>
+                        <img src="img/badge2-300x300.png" style="width:100%;" alt="">
+                    </div>
+                </div>
+                <!--right side bar end-->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <!--bordered divs start-->
+        <div class="col-md-12">
+            <div class="wrap" style="width: 100%; margin: 0 auto;">
+                <div class="main" style="width: 96%; margin: 0 auto;">
+                    <div class="col-md-12">
+                        <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                        <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--bordered divs end-->
+        <div class="clearfix"></div>
+    </div>
+
+{% endblock %}
+

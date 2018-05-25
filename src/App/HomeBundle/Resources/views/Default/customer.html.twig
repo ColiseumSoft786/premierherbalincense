@@ -1,0 +1,111 @@
+{% extends"::customer.html.twig" %}
+{% block body %}
+    <section class="content-header">
+        <h1>
+            Dashboard
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li>Customer</li>
+            <li class="active">Orders</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <!-- /.row -->
+
+        <!-- Main row -->
+        <div class="row">
+            <!-- Left col -->
+            <div class="col-md-offset-1 col-md-10">
+                <!-- /.row -->
+
+                <!-- TABLE: LATEST ORDERS -->
+                <div class="box box-warning">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Orders</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Order No</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Payment</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <thead>
+                            {% set a = 1 %}
+                            {% for item in order %}
+                                <tr>
+                                    <td>{{ a }}</td>
+                                    <td>{{ item.orderid }}</td>
+                                    <td>{{ item.price }}</td>
+                                    <td>
+                                        {% if item.status == 1 %}
+                                            <label for="" class="label label-success">Delivered</label>
+                                            {% else %}
+                                                <label for="" class="label label-warning">Pending</label>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ item.payment }}</td>
+                                    <td><a href="javascript:void(0)" onclick="$('#det{{ a }}').fadeToggle()">Details</a></td>
+                                    {% if item.status == 1 %}
+                                        <td><a href="javascript:void(0)" onclick="$('#rev{{ a }}').fadeToggle()">Review</a></td>
+                                    {% endif %}
+                                </tr>
+                                <tr style="display: none;" id="det{{ a }}">
+                                    <td colspan="7">
+                                        <div >
+                                            {% render(controller('HomeBundle:Default:details',{oid:item.id})) %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% if item.status == 1 %}
+                                    <tr id="rev{{ a }}" style="display: none;">
+                                        <td colspan="7">
+                                            {% if item.review == null %}
+                                                <form action="{{ path('home_homepage_review') }}" method="post">
+                                                    <input type="hidden" name="id" value="{{ item.id }}">
+                                                    <div class="col-md-offset-8 col-md-3">
+                                                        <input required type="text" name="review" placeholder="Review" class="form-control">
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <input type="submit" class="btn btn-instagram">
+                                                    </div>
+                                                </form>
+                                                {% else %}
+                                                <div class="col-md-offset-7 col-md-5">
+                                                    <label>Review:</label> {{ item.review }}
+                                                </div>
+                                            {% endif %}
+
+                                        </td>
+                                    </tr>
+
+                                {% endif %}
+                                {% set a = a+1 %}
+                            {% endfor %}
+                            </thead>
+
+                        </table>
+                        <script>
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </section>
+{% endblock %}

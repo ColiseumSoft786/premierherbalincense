@@ -11,7 +11,7 @@
 <body style="background-color: lightgray;">
 <script src="{{ asset('bundles/main/') }}js/jquery-3.3.1.min.js"></script>
 <script src="{{ asset('bundles/main/') }}js/bootstrap.js"></script>
-<script type="text/javascript">function add_chatinline(){var hccid=85419624;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
+<script type="text/javascript">function add_chatinline(){var hccid=92461249;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
     add_chatinline(); </script>
 <script>
     function addtocart(id,quantity){
@@ -38,6 +38,33 @@
             }
         })
     }
+    function removecart(id,c){
+        if(c == "cartdisplay"){
+            $.ajax({
+                url: '{{ path('home_homepage_removecart') }}?id='+id,
+                type: 'POST',
+                success: function(result){
+                    $.ajax({
+                        url: '{{ path('home_homepage_cartdisplay') }}',
+                        type: 'POST',
+                        success: function(result){
+                            $('#cartdisplay').html(result);
+                        }
+                    });
+                }
+            })
+        }
+        else{
+            $.ajax({
+                url: '{{ path('home_homepage_removecart') }}?id='+id,
+                type: 'POST',
+                success: function(result){
+                    window.location= '';
+                }
+            })
+        }
+
+    }
 </script>
 
 <div class="container-fluid">
@@ -45,6 +72,14 @@
         <div class="col-md-12">
             <div class="wrap" style="background-color: #ffffff; width: 94%; margin: 0 auto;">
                 <div class="main" style="width: 96%; border-top: 3px solid #e0dfdf; border-bottom: 1px solid #e0dfdf; margin: 0 auto;">
+                    {% render(controller('HomeBundle:Default:show')) %}
+                    <div class="clearfix"></div>
+                    <!--slider image area-->
+                    <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                    <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                    <div style="border-top: 1px solid #e0dfdf; margin-top: 3px;"></div>
+                    <div style="border: 2px solid #e0dfdf; margin-top: 3px;"></div>
+                    <!--slider image area-->
                     <div class="col-md-4">
                         <div class="top-one" style="border-right: 1px solid #e0dfdf;">
                             <img src="{{ asset('bundles/main/') }}img/logo.png" style="width: 100%;" alt="">
