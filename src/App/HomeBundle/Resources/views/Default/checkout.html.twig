@@ -164,17 +164,30 @@
                                                     <li class="wc_payment_method payment_method_cheque" style="padding: 10px 0px;">
                                                         <input id="checkue" type="radio" class="input-radio" name="payment_method" value="Debit Card" data-order_button_text="">
                                                         <label for="payment_method_cheque">
-                                                            Cheque Payment 	</label>
+                                                            Debit Card</label>
                                                         <div class="payment_box payment_method_cheque" style="display: block; background: #ebebeb; padding: 10px;">
                                                             <div class="lb">Card Number <font color="red">*</font></div>
-                                                            <div style="padding-bottom: 10px;"><input id="card" type="text" placeholder="•••• •••• •••• ••••" style="width: 100%; padding: 3px; border-radius:3px; border: 1px solid #cccccc;"></div>
+                                                            <div style="padding-bottom: 10px;"><input name="card" id="card" type="text" placeholder="•••• •••• •••• ••••" style="width: 100%; padding: 3px; border-radius:3px; border: 1px solid #cccccc;"></div>
                                                             <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
+
+                                                                <div class="field card">
+                                                                    <label for="card_number">Enter Card Number:</label>
+                                                                    <p>
+                                                                        <input name="card_number" type="text" value="">
+                                                                        <span class="card_icon"></span>
+                                                                    </p>
+                                                                    <p class="status">
+                                                                        <span class="status_icon"></span>
+                                                                        <span class="status_message"></span>
+                                                                    </p>
+                                                                </div>
+
                                                                 <div class="lb">EXPIRY (MM/YY) </div>
-                                                                <div><input id="exp" type="text" placeholder="MM / YY" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                                                <div><input name="exp" id="exp" type="text" placeholder="MM / YY" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
                                                             </div>
                                                             <div class="col-md-6" style=" padding: 10px 10px; color: #696767;">
                                                                 <div class="lb">Card Code</div>
-                                                                <div><input id="cvv" type="text" placeholder="CVV" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
+                                                                <div><input name="cvv" id="cvv" type="text" placeholder="CVV" style="width: 100%; padding: 4px; border-radius:3px; border: 1px solid #b9b9b8;"></div>
                                                             </div>
                                                             <div class="clearfix"></div>
                                                             <div class="col-md-12" style="text-align: right;">

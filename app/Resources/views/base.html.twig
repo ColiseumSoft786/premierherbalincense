@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('bundles/main/') }}css/style.css">
     <link rel='dns-prefetch' href='//fonts.googleapis.com' />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"/>
+    {#<link href="{{ asset('bundles/main/css/base.css') }}" rel="stylesheet"/>#}
 </head>
 <body style="background-color: lightgray;">
 <script src="{{ asset('bundles/main/') }}js/jquery-3.3.1.min.js"></script>
@@ -67,6 +68,11 @@
     }
 </script>
 
+<style>
+    .wrap{
+        width: 80% !important;
+    }
+</style>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -101,13 +107,13 @@
                                     <p style="padding: 10px 0px;">
                                         <img src="{{ asset('bundles/main/') }}img/customer-support-phone-icon.png" style="float: left; padding:0px 12px;" alt="">
                                         <span style="font-size: 12px;"><b>CUSTOMER SUPPORT</b></span> <br>
-                                        <span style="font-size: 12px;"><b>dumyaccount@gmail.com</b></span>
+                                        <span style="font-size: 12px;"><b>info@premierherbalincense.com</b></span>
 
                                     </p>
                                 </div>
                                 <div class="col-md-12" style="text-align: center; border-top: 1px solid #e0dfdf; border-right: 1px solid #e0dfdf; color: #000; background:;">
                                     <p style="padding:15px 0px; font-size: 20px;">
-                                        Contact Us: <a style="color: #000; font-size: 20px;" href="#">dumyaccount@gmail.com</a>
+                                        Contact Us: <a style="color: #000; font-size: 20px;" href="#">info@premierherbalincense.com</a>
                                     </p>
                                 </div>
                             </div>
@@ -146,10 +152,10 @@
                                 <li><a href="{{ path('home_homepage_all') }}">All Products</a></li>
                                 <li><a href="{{ path('home_homepage_tsp') }}">Top Selling Products</a></li>
                                 <li><a href="{{ path('home_homepage_kartom') }}">Kratom</a></li>
-                                <li><a href="{{ path('home_homepage') }}">Discount Code</a></li>
-                                <li><a href="{{ path('home_homepage') }}">FAQ's</a></li>
+                                <li><a href="{{ path('home_homepage_discount') }}">Discount Code</a></li>
+                                <li><a href="{{ path('home_homepage_faq') }}">FAQ's</a></li>
                                 <li><a href="{{ path('home_homepage_ws') }}">Wholesale Pricelist</a></li>
-                                <li><a href="{{ path('home_homepage') }}">Track You Order Here</a></li>
+                                <li><a href="{{ path('home_homepage_tracking') }}">Track You Order Here</a></li>
                             </ul>
                         </div>
                     </div>

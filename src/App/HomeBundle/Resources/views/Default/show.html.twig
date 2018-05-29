@@ -5,7 +5,6 @@
     </div>
     {% else %}
         <div>
-            hello, {{ user.email }}
             {% if user.role == "Admin" %}
                     <a class="myaccount" href="{{ path('admin_homepage') }}">My Account</a>
                 {% else %}

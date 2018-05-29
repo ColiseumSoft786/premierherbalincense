@@ -39,6 +39,11 @@
 <!-- ChartJS -->
 <script src="{{ asset('bundles/content/bower_components/Chart.js/Chart.js"') }}></script>
 <script src="{{ asset('bundles/content/dist/js/pages/dashboard2.js') }}></script>
+
+<!--TinyMCE For Textarea--->
+<script src="{{ asset('bundles/content/tinymce/tinymce.min.js') }}"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('bundles/content/dist/js/demo.js') }}"></script>
 <script src="{{ asset('bundles/content/dist/js/gitcdn.js') }}"></script>
@@ -112,43 +117,25 @@
                         <li><a href="{{ path('admin_homepage_category') }}"><i class="fa fa-circle-o"></i> View Categories </a></li>
                     </ul>
                 </li>
-                <li class="treeview">
-                </li>
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-th"></i>
-                        <span>Web Panel</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Categories </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Products </a></li>
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-duplicate"></i>
-                        <span>Web Pages</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href=""><i class="fa fa-circle-o"></i> Customize Web Pages </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Customize Main Pages </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Customize Special Offer </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Best Deals </a></li>
-                        <li><a href=""><i class="fa fa-circle-o"></i> Slider </a></li>
 
-                    </ul>
+
+                <li>
+                    <a href="{{ path('admin_homepage_orders') }}">
+                        <i class="fa fa-arrow-circle-o-right"></i>
+                        <span>Orders</span>
+                    </a>
                 </li>
-                <li class="treeview">
+                <li>
                     <a href="{{ path('home_homepage_logout') }}">
                         <i class="fa fa-sign-out"></i>
                         <span>Log Out</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('home_homepage') }}">
+                        <i class="fa fa-sign-out"></i>
+                        <span>Go to HomePage</span>
                     </a>
                 </li>
             </ul>

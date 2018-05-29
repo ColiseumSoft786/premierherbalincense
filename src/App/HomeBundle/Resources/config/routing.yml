@@ -53,3 +53,9 @@ home_homepage_review:
 home_homepage_tracking:
     path:     /tracking
     defaults: { _controller: HomeBundle:Default:tracking }
+home_homepage_faq:
+    path:     /faq
+    defaults: { _controller: HomeBundle:Default:faq }
+home_homepage_discount:
+    path:     /discount_codes
+    defaults: { _controller: HomeBundle:Default:discount }

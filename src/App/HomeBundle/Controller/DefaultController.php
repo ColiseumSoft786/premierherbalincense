@@ -242,7 +242,12 @@ class DefaultController extends Controller
         $em->flush();
         return $this->redirect($this->generateUrl('home_homepage_customer'));
     }
-
+    public function faqAction(){
+        return $this->render('HomeBundle:Default:faq.html.twig');
+    }
+    public function discountAction(){
+        return $this->render('HomeBundle:Default:discount.html.twig');
+    }
 
     public function loginAction(Request $request){
         if ($request->getMethod() == "POST"){

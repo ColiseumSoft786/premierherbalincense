@@ -13,7 +13,7 @@
     <field name="card" type="string" column="Card" length="45" nullable="true"/>
     <field name="cvv" type="string" column="Cvv" length="45" nullable="true"/>
     <field name="exp" type="string" column="Exp" length="45" nullable="true"/>
-    <field name="price" type="integer" column="Price" nullable="true"/>
+    <field name="price" type="float" column="Price" precision="10" scale="0" nullable="true"/>
     <field name="review" type="text" column="Review" nullable="true"/>
     <many-to-one field="customer" target-entity="Customer">
       <join-columns>

@@ -40,9 +40,14 @@ class Orders
     private $exp;
 
     /**
-     * @var integer
+     * @var float
      */
     private $price;
+
+    /**
+     * @var string
+     */
+    private $review;
 
     /**
      * @var integer
@@ -196,7 +201,7 @@ class Orders
     /**
      * Set price
      *
-     * @param integer $price
+     * @param float $price
      * @return Orders
      */
     public function setPrice($price)
@@ -209,11 +214,34 @@ class Orders
     /**
      * Get price
      *
-     * @return integer 
+     * @return float 
      */
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set review
+     *
+     * @param string $review
+     * @return Orders
+     */
+    public function setReview($review)
+    {
+        $this->review = $review;
+
+        return $this;
+    }
+
+    /**
+     * Get review
+     *
+     * @return string 
+     */
+    public function getReview()
+    {
+        return $this->review;
     }
 
     /**
@@ -247,33 +275,5 @@ class Orders
     public function getCustomer()
     {
         return $this->customer;
-    }
-    /**
-     * @var string
-     */
-    private $review;
-
-
-    /**
-     * Set review
-     *
-     * @param string $review
-     * @return Orders
-     */
-    public function setReview($review)
-    {
-        $this->review = $review;
-
-        return $this;
-    }
-
-    /**
-     * Get review
-     *
-     * @return string 
-     */
-    public function getReview()
-    {
-        return $this->review;
     }
 }
